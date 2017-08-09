@@ -33,7 +33,7 @@ Vue.prototype.replaceDate = function(data){
 		data = data.split('-');
 	}
 	console.log(data)
-	let newDate = data[0] + '-' + (data[1] < 10 ?　'0' + data[1] : data[1]) + '-' + (data[2] < 10 ? '0' + data[2] : data[2]);
+	let newDate = data[0] + '-' + (+data[1] < 10 ?　'0' + (+data[1]) : data[1]) + '-' + (+data[2] < 10 ? '0' + (+data[2]) : data[2]);
 	return newDate
 }
 Vue.prototype.initweek = function(data){
