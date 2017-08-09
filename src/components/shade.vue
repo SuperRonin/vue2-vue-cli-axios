@@ -1,12 +1,17 @@
 <template>
-		<div class="shade"></div>
+		<div class="shade" @click="hideshade"></div>
 </template>
 
 
 
 <script>
 	export default {
-		name: 'shade'
+		name: 'shade',
+		methods: {
+			hideshade (){
+				this.$emit('ishide',false)
+			}
+		}
 	}
 </script>
 

@@ -9,7 +9,7 @@
 		</div>
 		<!-- 日历 -->
 		<vue-event-calendar v-show="showCalendar" :events="demoEvents" @day-changed="handleDayChanged" @month-changed="handleMonthChanged"></vue-event-calendar>
-		<Shade v-show="showCalendar"></Shade>
+		<Shade v-show="showCalendar" @ishide="showCalendarFun"></Shade>
 	</div>
 </template>
 
@@ -33,8 +33,13 @@
 		props: ['departdate'],
 		components: { Shade },
 		methods: {
-			showCalendarFun () {
-				this.showCalendar = true
+			showCalendarFun (val) {
+				console.log(typeof val)
+				if(typeof val == 'boolean'){
+					this.showCalendar = val
+				}else{
+					this.showCalendar = true
+				} 
 			},
 			handleDayChanged (data) {
 		    	this.showCalendar = false;
@@ -45,13 +50,13 @@
 		    handleMonthChanged (data) {
 		     
 		    },
-		    initweek(data){
-		    	data = data.indexOf('/') !== -1 ? data.split('/') : data.split('-');;
+		    initweek : function(data){
+				data = data.indexOf('/') !== -1 ? data.split('/') : data.split('-');;
 				let sdate =new Date(data[0],parseInt(data[1]-1),data[2]);   
 				let curday = sdate.getDay();
 				let weeks = ['周日','周一','周二','周三','周四','周五','周六'];
 				return weeks[curday]
-		    },
+			},
 		    /*
 		    *前一天后一天日期获取
 			*日期：dateParameter
