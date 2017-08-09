@@ -1,6 +1,9 @@
 <template>
 	<div class="tit" id="title">
-		<div class="back" id="back"></div>
+		<div class="back" id="back" @click="backpre" v-show="showback">
+			<img src="../assets/back.png">返回
+		</div>
+		<div class="back" id="back" v-show="!showback"></div>
 		<div class="Bustitle" id="title">中国公路客票网</div>
 		<div class="null"></div>
 	</div>
@@ -9,7 +12,17 @@
 
 <script>
 	export default {
-		name: 'title'
+		name: 'title',
+		data () {
+			return {
+				showback: this.$store.state.showback
+			}
+		},
+		methods: {
+			backpre () {
+				history.go(-1)
+			}
+		}
 	}
 </script>
 
@@ -29,15 +42,15 @@
 	.back {
 		width: 20%;
 		height: 3rem;
-		font-size: 1.5rem;
+		font-size: 1rem;
 		color: #FFFFFF;
 		line-height: 3rem;
 	}
 
 	.back img {
-		width: 1.8rem;
+		width: 1rem;
 		position: relative;
-		top: 0.7rem;
+		top: 0.4rem;
 		margin-left: 0.5rem;
 	}
 

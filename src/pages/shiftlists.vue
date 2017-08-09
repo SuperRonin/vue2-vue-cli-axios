@@ -62,6 +62,7 @@
 		},
 		created () {
 			window._this = this;
+			this.$store.state.showback = true
 			this.query = this.$route.query; //地址栏参数
 			this.departdate= this.query.departdate;
 			this.shiftlistsAjax();
@@ -69,6 +70,7 @@
 		components: { Tit,Beforeorafterday,Nodata,Loading },
 		methods: {
 			shiftlistsAjax: function(){
+				console.log(this.departdate)
 				this.showLoading = true;
 				axios.get('http://mraw.bus365.cn/schedulesearch0',{
 					params: {

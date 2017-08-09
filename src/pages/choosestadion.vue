@@ -32,7 +32,7 @@
 		<!-- 日历 -->
 		<vue-event-calendar v-show="showCalendar" :events="demoEvents" @day-changed="handleDayChanged" @month-changed="handleMonthChanged"></vue-event-calendar>
 		<!-- 遮罩层 -->
-		<Shade v-show="showCalendar"></Shade>	
+		<Shade v-show="showCalendar" @ishide="ishide"></Shade>	
 	</div>
 </template>
 
@@ -55,16 +55,20 @@
 		created (){
 			// 初始化日期
 			let todayYear = new Date().getFullYear();
-			let todayMonth = (new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) + '月' : (new Date().getMonth() + 1) + '月';
-			let todayDay = new Date().getDate() < 10 ? '0' + new Date().getDate() + '日' : new Date().getDate() + '日';
-			this.choosedate = todayMonth + todayDay;
+			let todayMonth = (new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1);
+			let todayDay = new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate();
+			this.choosedate = todayMonth + '月' + todayDay + '日';
 			this.week = this.initweek(todayYear + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate());
-			this.particular = todayYear + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate();
+			console.log((new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1))
+			this.particular = todayYear + '-' + todayMonth + '-' + todayDay;
 		},
 		components: {
 			Shade
 		},
 		methods: {
+			ishide (data){
+				this.showCalendar = data;
+			},
 			departnameFun (){
 				if(this.reachname != "请选择"){
 					this.$router.push('/chooseplace'+ "?reachname=" + this.reachname + "&reachid=" + this.reachid)
@@ -80,7 +84,7 @@
 				}
 			},
 			handleDayChanged (data) {
-		      this.removeYear(data)
+		      this.formatDate(data)
 		      this.showCalendar = !this.showCalendar;
 		    },
 		    handleMonthChanged (data) {
@@ -89,17 +93,17 @@
 			findschle () {
 				this.$router.push('/shiftlists'+ "?departname=" + this.departname + "&departid=" + this.departid + "&reachname=" + this.reachname + "&reachid=" + this.reachid + "&departdate=" + this.particular)
 			},
-			removeYear (data){
+			formatDate (data){
 				let curdate = data.date;
 				this.week = this.initweek(curdate);
 				curdate = curdate.split('/');	
-				this.particular = curdate[0] + '-' + curdate[1] + '-' + curdate[2];
-				let month = JSON.parse(curdate[1]) < 10 ? '0' + JSON.parse(curdate[1]) + '月' : curdate[1] + '月';	
-				let day = JSON.parse(curdate[2]) < 10 ? '0' + JSON.parse(curdate[2]) + '日' : curdate[2] + '日';	
+				this.particular = curdate[0] + '-' + (+curdate[1] < 10 ? '0' + JSON.parse(curdate[1]) : curdate[1]) + '-' + (+curdate[2] < 10 ? '0' + JSON.parse(curdate[2]) : curdate[2]);
+				let month = +curdate[1] < 10 ? '0' + (+curdate[1]) + '月' : curdate[1] + '月';	
+				let day = +curdate[2] < 10 ? '0' + (+curdate[2]) + '日' : curdate[2] + '日';	
 				this.choosedate = month + day;
 			},
 			initweek (data){
-				data = data.indexOf('/') !== -1 ? data.split('/') : data.split('-');;
+				data = data.split('/');
 				let sdate =new Date(data[0],parseInt(data[1]-1),data[2]);   
 				let curday = sdate.getDay();
 				let weeks = ['周日','周一','周二','周三','周四','周五','周六'];
@@ -116,7 +120,7 @@
 	.main{
 		padding: 0 1rem;
 	    background: #FFFFFF;
-	    margin-top: 1rem;
+	    margin-top: 2rem;
 	}
 	.cityDes {
 		width: 100%;
@@ -225,14 +229,14 @@
 	.div_btn {
 		width: 100%;
 	    background-color: #fff;
-	    margin-top: 1rem;
+	    margin-top:2rem;
 	}
 	.find {
 	    width: 90%;
-	    height: 2rem;
+	    height: 2.5rem;
 	    background: #1FCC9E;
 	    text-align: center;
-	    line-height: 2rem;
+	    line-height: 2.5rem;
 	    margin: 1rem 0 0 5%;
 	    color: #FFFFFF;
 	    font-size: 1.4rem;
