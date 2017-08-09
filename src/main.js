@@ -27,7 +27,11 @@ new Vue({
   components: { App }
 })
 Vue.prototype.replaceDate = function(data){
-	data = data.split('/');
+	if(data.indexOf('-') == -1){
+		data = data.split('/');
+	}else{
+		data = data.split('-');
+	}
 	console.log(data)
 	let newDate = data[0] + '-' + data[1] + '-' + data[2]
 	return newDate

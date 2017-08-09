@@ -35,11 +35,13 @@
 				if(!this.query.reach){
     				let departname = event.target.innerText;
 					let departid = event.target.getAttribute("data-id");
-					this.$router.push('/' + "?departname=" + departname + "&departid=" + departid + "&reachname=" + this.query.reachname + "&reachid=" + this.query.reachid);
+					let reachname = this.query.reachname == undefined ? '请选择' : this.query.reachname;
+					this.$router.push('/' + "?departname=" + departname + "&departid=" + departid + "&reachname=" + reachname + "&reachid=" + this.query.reachid);
 	    		}else{
 	    			let reachname = event.target.innerText;
 					let reachid = event.target.getAttribute("data-id");
-					this.$router.push('/' + "?reachname=" + reachname + "&reachid=" + reachid + "&departname=" + this.query.departname + "&departid=" + this.query.departid);
+					let departname = this.query.departname == undefined ? '请选择' : this.query.departname;
+					this.$router.push('/' + "?reachname=" + reachname + "&reachid=" + reachid + "&departname=" + departname + "&departid=" + this.query.departid);
 	    		}
 			},
 			departAjax: function (_this) {
