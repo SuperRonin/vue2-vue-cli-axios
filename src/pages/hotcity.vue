@@ -36,7 +36,7 @@
     				let departname = event.target.innerText;
 					let departid = event.target.getAttribute("data-id");
 					let reachname = this.query.reachname == undefined ? '请选择' : this.query.reachname;
-					this.$router.push('/' + "?departname=" + departname + "&departid=" + departid + "&reachname=" + reachname + "&reachid=" + this.query.reachid);
+					this.$router.push('home' + "?departname=" + departname + "&departid=" + departid + "&reachname=" + reachname + "&reachid=" + this.query.reachid);
 	    		}else{
 	    			let reachname = event.target.innerText;
 					let reachid = event.target.getAttribute("data-id");

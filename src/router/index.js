@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/pages/home'
-import chooseplace from '@/pages/chooseplace'
-import shiftlists from '@/pages/shiftlists'
-import applyorder from '@/pages/applyorder'
 
+const home = r => require.ensure([], () => r(require('../pages/home')), 'home')
+const chooseplace = r => require.ensure([], () => r(require('../pages/chooseplace')), 'chooseplace')
+const shiftlists = r => require.ensure([], () => r(require('../pages/shiftlists')), 'shiftlists')
+const applyorder = r => require.ensure([], () => r(require('../pages/applyorder')), 'applyorder')
 
 
 
@@ -12,6 +12,11 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '',
+      name: 'home',
+      component: home
+    },
     {
       path: '/',
       name: 'home',
