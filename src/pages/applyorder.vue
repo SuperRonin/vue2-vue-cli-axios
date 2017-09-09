@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<Tit></Tit>
 		<h1>哎呦,作者还没有开发完</h1>
 		<h2>敬请期待...</h2>
 	</div>
@@ -8,8 +9,10 @@
 
 
 <script>
+	import Tit from '../components/title'
 	export default {
-		name: 'applyorder'
+		name: 'applyorder',
+		components: {Tit}
 	}
 </script>
 

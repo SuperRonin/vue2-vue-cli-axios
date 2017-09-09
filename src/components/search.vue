@@ -1,9 +1,12 @@
 <template>
-	<div class="st_in">
-		<div class="icon">
-			<img src="../assets/find.png">
-			<input type="text" id="startplaceput" v-if="showdepartSearch" v-on:input="departSearch" placeholder="北京/beijing/bj">
-			<input type="text" id="startplaceput" v-if="showreachSearch"  v-on:input="reachSearch" placeholder="北京/beijing/bj">
+	<div>
+		
+		<div class="st_in">
+			<div class="icon">
+				<img src="../assets/find.png">
+				<input type="text" id="startplaceput" v-if="showdepartSearch" v-on:input="departSearch" placeholder="北京/beijing/bj">
+				<input type="text" id="startplaceput" v-if="showreachSearch"  v-on:input="reachSearch" placeholder="北京/beijing/bj">
+			</div>
 		</div>
 	</div>
 </template>
@@ -11,6 +14,7 @@
 
 
 <script>
+	
 	export default {
 		name: 'st_in',
 		data () {
@@ -60,6 +64,7 @@
 						}
 					})
 					  .then(function (response) {
+					  	alert(1)
 					    if(response && response.length !== 0){
 					    	_this.$emit('searchs',response.data.data)
 					    }

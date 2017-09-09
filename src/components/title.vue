@@ -26,7 +26,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped="">
 	.tit {
 		width: 100%;
 		height: 3rem;
@@ -35,24 +35,27 @@
 		top: 0;
 		left: 0;
 		z-index: 88;
-	}
-	.tit div{
+
+		div{
 			float: left;
 		}
+	}
+	
 	.back {
 		width: 20%;
 		height: 3rem;
 		font-size: 1rem;
 		color: #FFFFFF;
 		line-height: 3rem;
+
+		img {
+			width: 1rem;
+			position: relative;
+			top: 0.4rem;
+			margin-left: 0.5rem;
+		}
 	}
 
-	.back img {
-		width: 1rem;
-		position: relative;
-		top: 0.4rem;
-		margin-left: 0.5rem;
-	}
 
 	.Bustitle {
 		width: 60%;

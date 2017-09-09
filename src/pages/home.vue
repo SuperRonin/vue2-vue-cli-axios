@@ -67,6 +67,7 @@
       }
     },
     created () {
+      this.$store.state.showback = false;
       let _this = this;
       _this.initstadion()
     },

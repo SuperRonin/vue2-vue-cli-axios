@@ -15,6 +15,7 @@
 	import Tit from '../components/title'
 	import Search from '../components/search'
 	import Hotcity from './hotcity'
+	
 	export default {
 		name: 'chooseplace',
 		data () {
@@ -29,6 +30,7 @@
 		created: function(){
 	    	this.query = this.$route.query;
 	    	this.cityid = this.query.departid;
+	    	this.$store.state.showback = true;
 	    },
 		methods: {
 			search (val) {

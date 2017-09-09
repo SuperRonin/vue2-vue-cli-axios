@@ -60,6 +60,10 @@
 			    departdate: ''
 			}
 		},
+		updated () {
+			const changedate = document.getElementById("ylval");
+			// console.log(changedate.innerHTML + '==========')
+		},
 		created () {
 			window._this = this;
 			this.$store.state.showback = true

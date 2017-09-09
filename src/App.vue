@@ -21,7 +21,7 @@ export default {
 }
  /*日历*/
 .__vev_calendar-wrapper{
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 }
