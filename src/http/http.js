@@ -2,14 +2,15 @@
 * @Author: xuexingwei
 * @Date:   2017-09-29 09:30:47
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-29 16:53:32
+* @Last Modified time: 2017-09-29 17:06:35
 */
 
 import Vue from 'vue'
 import axios from 'axios'
 
 
-axios.defaults.baseURL = '/api';
+// axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = window.location.origin;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
