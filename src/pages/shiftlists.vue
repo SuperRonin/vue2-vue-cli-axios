@@ -9,7 +9,7 @@
 				<li class="sl_main_li" v-for="(item,index) in shiftlists" :data-ins="index">
 					<ul class="sl_m">
 						<li>
-							<p></p>		
+							<p></p>
 							<div class="cf_tj">{{item.departtime.substring(0, 5)}}</div>
 						</li>
 						<li>
@@ -34,12 +34,14 @@
 						<div>途经站:<span v-for="item in waystadionlist"><span>{{item.stationname + '　'}}</span></span></div>
 					</div>
 				</li>
-			</ul>	
+			</ul>
 		</div>
 	</div>
 </template>
 
 <script>
+	import $http from '../http/http';
+	import utils from '../util/util';
 	import Tit from '../components/title';
 	import Beforeorafterday from '../components/before_or_afterday';
 	import Nodata from '../components/nodata';
@@ -74,9 +76,8 @@
 		components: { Tit,Beforeorafterday,Nodata,Loading },
 		methods: {
 			shiftlistsAjax: function(){
-				console.log(this.departdate)
 				this.showLoading = true;
-				axios.get('http://mraw.bus365.cn/schedulesearch0',{
+				$http.get('/schedulesearch0',{
 					params: {
 						departid: this.query.departid,
 						departname: this.query.departname,
@@ -114,7 +115,7 @@
 				this.WaystadionAjax(_this.schedulecodes[index])
 			},
 			WaystadionAjax: function(schedulecode){
-				axios.get('http://mraw.bus365.cn/schedule/routestations',{
+				$http.get('/schedule/routestations',{
 					params: {
 						stationorgid: _this.departid,
 						schedulecode: schedulecode,
@@ -132,7 +133,7 @@
 				})
 			},
 			choosedateFun: function(data){
-				this.departdate = this.replaceDate(data);
+				this.departdate = this.utils.replaceDate(data);
 				this.shiftlistsAjax();
 			},
 			nowticket: function(){

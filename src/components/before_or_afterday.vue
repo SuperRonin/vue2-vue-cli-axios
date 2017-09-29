@@ -39,7 +39,7 @@
 					this.showCalendar = val
 				}else{
 					this.showCalendar = true
-				} 
+				}
 			},
 			handleDayChanged (data) {
 		    	this.showCalendar = false;
@@ -48,11 +48,11 @@
 		    	this.$emit('choosedateFun',data.date);
 		    },
 		    handleMonthChanged (data) {
-		     
+
 		    },
 		    initweek : function(data){
 				data = data.indexOf('/') !== -1 ? data.split('/') : data.split('-');;
-				let sdate =new Date(data[0],parseInt(data[1]-1),data[2]);   
+				let sdate =new Date(data[0],parseInt(data[1]-1),data[2]);
 				let curday = sdate.getDay();
 				let weeks = ['周日','周一','周二','周三','周四','周五','周六'];
 				return weeks[curday]
@@ -67,7 +67,7 @@
 		    	let translateDate = "";
 					// dateString = "",
 					// monthString = "";
-				
+
 				translateDate = dateParameter.replace("-", "/").replace("-", "/");
 
 				//  日期获取
@@ -80,14 +80,14 @@
 				);
 				newDate = new Date(newDate);
 				let monthString;
-				//如果月份长度少于2，则前加 0 补位   
+				//如果月份长度少于2，则前加 0 补位
 				if((newDate.getMonth() + 1).toString().length == 1) {
 					monthString = 0 + "" + (newDate.getMonth() + 1).toString();
 				} else {
 					monthString = (newDate.getMonth() + 1).toString();
 				}
 				let dayString;
-				//如果天数长度少于2，则前加 0 补位   
+				//如果天数长度少于2，则前加 0 补位
 				if(newDate.getDate().toString().length == 1) {
 					dayString = 0 + "" + newDate.getDate().toString();
 				} else {

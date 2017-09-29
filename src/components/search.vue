@@ -1,6 +1,6 @@
 <template>
 	<div>
-		
+
 		<div class="st_in">
 			<div class="icon">
 				<img src="../assets/find.png">
@@ -14,7 +14,7 @@
 
 
 <script>
-	
+	import $http from '../http/http'
 	export default {
 		name: 'st_in',
 		data () {
@@ -36,7 +36,7 @@
 		},
 		methods: {
 				departSearch: function (){
-					axios.get('http://mraw.bus365.cn/departure0',{
+					$http.get('/departure0',{
 						params: {
 							word: document.getElementById('startplaceput').value,
 							page: 1,
@@ -54,7 +54,7 @@
 					})
 				},
 				reachSearch: function (){
-					axios.get('http://mraw.bus365.cn/schedule/reachstations2/0',{
+					$http.get('/schedule/reachstations2/0',{
 						params: {
 							word: document.getElementById('startplaceput').value,
 							page: 1,
@@ -64,7 +64,6 @@
 						}
 					})
 					  .then(function (response) {
-					  	alert(1)
 					    if(response && response.length !== 0){
 					    	_this.$emit('searchs',response.data.data)
 					    }
@@ -104,7 +103,7 @@
 	}
 	.icon input {
 	    width: 80%;
-	
+
 	    border: none;
 	    background: #f4f4f4;
 	    position: relative;

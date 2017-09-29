@@ -12,6 +12,7 @@
 
 
 <script>
+	import $http from '../http/http'
 	export default {
 		name: 'hottitle',
 		data () {
@@ -28,7 +29,7 @@
     		}else{
     			_this.reachAjax(_this);
     		}
-			
+
 	    },
 		methods: {
 			backhome: function (event) {
@@ -36,7 +37,7 @@
     				let departname = event.target.innerText;
 					let departid = event.target.getAttribute("data-id");
 					let reachname = this.query.reachname == undefined ? '请选择' : this.query.reachname;
-					this.$router.push('home' + "?departname=" + departname + "&departid=" + departid + "&reachname=" + reachname + "&reachid=" + this.query.reachid);
+					this.$router.push('/' + "?departname=" + departname + "&departid=" + departid + "&reachname=" + reachname + "&reachid=" + this.query.reachid);
 	    		}else{
 	    			let reachname = event.target.innerText;
 					let reachid = event.target.getAttribute("data-id");
@@ -45,7 +46,7 @@
 	    		}
 			},
 			departAjax: function (_this) {
-				axios.get('http://mraw.bus365.cn/schedule/topdepartcitys/0')
+				$http.get('/schedule/topdepartcitys/0')
 				  .then(function (response) {
 				    if(response.data && response.data.length !== 0){
 				    	_this.startcity = response.data;
@@ -56,7 +57,7 @@
 				})
 			},
 			reachAjax: function (_this) {
-				axios.get('http://mraw.bus365.cn/schedule/reachrecommend/0?cityid=110000000000&page=1&size=100')
+				$http.get('/schedule/reachrecommend/0?cityid=110000000000&page=1&size=100')
 				  .then(function (response) {
 				    if(response.data && response.data.length !== 0){
 				    	_this.startcity = response.data.data;
@@ -95,7 +96,7 @@
 		width: 19%;
 		border: 1px solid #eee;
 		padding: 0.5rem;
-		float: left; 
+		float: left;
 		margin: 0.5rem 1rem;
 		text-align: center;
 		border-radius: 0.2rem;
