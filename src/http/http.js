@@ -2,7 +2,7 @@
 * @Author: xuexingwei
 * @Date:   2017-09-29 09:30:47
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-29 16:47:32
+* @Last Modified time: 2017-09-29 16:53:32
 */
 
 import Vue from 'vue'
@@ -25,10 +25,10 @@ axios.interceptors.request.use(function(config){
 
 // 响应时的拦截
 axios.interceptors.response.use(function(response){
-    console.log(!response.data.status)
+    // console.log(!response.data.status)
     if(!response.data.status && !response.data.departid){
-        alert('请求成功，此接口没有返回状态码 并且数据为null')
-        return
+        // alert('请求成功，此接口没有返回状态码 并且数据为null')
+        // return
     }
     //返回响应时做一些处理
     return response

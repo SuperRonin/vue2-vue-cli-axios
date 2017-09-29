@@ -16,7 +16,8 @@
 
 
 <script>
-	import Shade from './shade'
+	import Shade from './shade';
+	import utils from '../util/util';
 	export default {
 		name: 'choosedate',
 		data (){
@@ -34,7 +35,6 @@
 		components: { Shade },
 		methods: {
 			showCalendarFun (val) {
-				console.log(typeof val)
 				if(typeof val == 'boolean'){
 					this.showCalendar = val
 				}else{
@@ -43,8 +43,8 @@
 			},
 			handleDayChanged (data) {
 		    	this.showCalendar = false;
-		    	this.choosedate = this.replaceDate(data.date);
-		    	this.week = this.initweek(this.choosedate);
+		    	this.choosedate = this.utils.replaceDate(data.date);
+		    	this.week = this.utils.initweek(this.choosedate);
 		    	this.$emit('choosedateFun',data.date);
 		    },
 		    handleMonthChanged (data) {
@@ -96,7 +96,7 @@
 				let dateString;
 				dateString = newDate.getFullYear() + "-" + monthString + "-" + dayString;
 				this.choosedate = dateString;
-				this.week = this.initweek(dateString);
+				this.week = this.utils.initweek(dateString);
 				this.$emit('choosedateFun',dateString);
 		    }
 		}
