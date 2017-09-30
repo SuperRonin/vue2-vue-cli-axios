@@ -2,15 +2,17 @@
 * @Author: xuexingwei
 * @Date:   2017-09-29 09:30:47
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-29 17:06:35
+* @Last Modified time: 2017-09-30 09:51:47
 */
 
 import Vue from 'vue'
 import axios from 'axios'
 
-
-// axios.defaults.baseURL = '/api';
-axios.defaults.baseURL = window.location.origin;
+if (process.env.NODE_ENV == 'development') {
+    axios.defaults.baseURL = '/dev';
+}else{
+    axios.defaults.baseURL = 'http://www.bus365.com';
+}
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
