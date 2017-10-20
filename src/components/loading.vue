@@ -3,10 +3,10 @@
 	<div class="loading">
 		<Shade></Shade>
 		<img class="loadingImg loadingImgIn" src="../assets/busloadding_bus.png">
-		<transition>
-			<img class="loadingImg" name="fade" src="../assets/busloadding_yuan.png">
-		</transition>	
-		
+		<transition name="fade">
+			<img class="loadingImg" :transition="fade" src="../assets/busloadding_yuan.png">
+		</transition>
+
 	</div>
 </template>
 
@@ -32,7 +32,12 @@
 	.loadingImgIn{
 		width: 3.5rem;
 	}
-	.fade-enter-active, .fade-leave-active {
-	  transition: opacity 0.25s ease-out;
+	.fade-transition {
+	  transform: rotate(720deg);
+	}
+	/* .expand-enter 定义进入的开始状态 */
+	/* .expand-leave 定义离开的结束状态 */
+	.fade-enter, .fade-leave {
+	  transform: rotate(0deg);
 	}
 </style>

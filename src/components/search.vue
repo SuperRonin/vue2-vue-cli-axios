@@ -26,7 +26,6 @@
 		},
 		props: ["cityid"],
 		created () {
-			window._this = this;
 			this.query = this.$route.query; //地址栏参数
 			if(this.query.reach){
 				this.showdepartSearch= false
@@ -36,6 +35,7 @@
 		},
 		methods: {
 				departSearch: function (){
+					var that = this;
 					$http.get('/departure0',{
 						params: {
 							word: document.getElementById('startplaceput').value,
@@ -54,6 +54,7 @@
 					})
 				},
 				reachSearch: function (){
+					var that = this;
 					$http.get('/schedule/reachstations2/0',{
 						params: {
 							word: document.getElementById('startplaceput').value,
