@@ -46,7 +46,7 @@
 					})
 					  .then(function (response) {
 					    if(response && response.length !== 0){
-					    	_this.$emit('searchs',response.data)
+					    	that.$emit('searchs',response.data)
 					    }
 					  })
 					  .catch(function (error) {
@@ -61,12 +61,12 @@
 							page: 1,
 							departtype: 2,
 							rowCount: 100,
-							cityid: _this.cityid
+							cityid: that.cityid
 						}
 					})
 					  .then(function (response) {
 					    if(response && response.length !== 0){
-					    	_this.$emit('searchs',response.data.data)
+					    	that.$emit('searchs',response.data.data)
 					    }
 					  })
 					  .catch(function (error) {
