@@ -3,18 +3,25 @@
 	<div class="loading">
 		<Shade></Shade>
 		<img class="loadingImg loadingImgIn" src="../assets/busloadding_bus.png">
-		<transition name="fade">
-			<img class="loadingImg" :transition="fade" src="../assets/busloadding_yuan.png">
-		</transition>
-
+		<img class="loadingImg outline" v-show="show"  src="../assets/busloadding_yuan.png">
 	</div>
 </template>
 
 
 <script>
-	import Shade from './shade'
+	import Shade from './shade';
 	export default {
 		name: 'loading',
+		props: ['showLoading'],
+		data (){
+			return {
+				show: true
+			}
+		},
+		created (){
+			console.log(this.showLoading)
+			// this.show = this.showLoading;
+		},
 		components: { Shade }
 	}
 </script>
@@ -32,12 +39,34 @@
 	.loadingImgIn{
 		width: 3.5rem;
 	}
-	.fade-transition {
-	  transform: rotate(720deg);
-	}
-	/* .expand-enter 定义进入的开始状态 */
-	/* .expand-leave 定义离开的结束状态 */
-	.fade-enter, .fade-leave {
-	  transform: rotate(0deg);
-	}
+	@keyframes myfirst
+    {
+        from {transform: rotate(0);}
+        to {transform: rotate(36000deg);}
+    }
+
+    @-moz-keyframes myfirst /* Firefox */
+    {
+        from {transform: rotate(0);}
+        to {transform: rotate(36000deg);}
+    }
+
+    @-webkit-keyframes myfirst /* Safari 和 Chrome */
+    {
+        from {transform: rotate(0);}
+        to {transform: rotate(36000deg);}
+    }
+
+    @-o-keyframes myfirst /* Opera */
+    {
+        from {transform: rotate(0);}
+        to {transform: rotate(36000deg);}
+    }
+    .outline{
+        animation-name: myfirst;
+        animation-duration: 100s;
+        animation-timing-function: linear;
+        margin: -9.5%;
+    }
+
 </style>

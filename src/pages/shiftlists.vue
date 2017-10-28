@@ -3,7 +3,7 @@
 		<Tit></Tit>
 		<Beforeorafterday @choosedateFun="choosedateFun" :departdate="departdate"></Beforeorafterday>
 		<Nodata v-if="showNodata"></Nodata>
-		<Loading v-if="showLoading"></Loading>
+		<Loading v-if="showLoading" :showLoading="showLoading"></Loading>
 		<div class="buslist" id="shiftlists" v-if="!showNodata">
 			<ul class="sl_main" id="shiftul">
 				<li class="sl_main_li" v-for="(item,index) in shiftlists" :data-ins="index">

@@ -31,7 +31,6 @@ export default new Router({
       path: '/applyorder',
       name: 'applyorder',
       component: applyorder
-    },
-
+    }
   ]
 })
