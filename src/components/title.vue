@@ -4,7 +4,7 @@
 			<img src="../assets/back.png">返回
 		</div>
 		<div class="back" id="back" v-show="!showback"></div>
-		<div class="Bustitle" id="title">中国公路客票网</div>
+		<div class="Bustitle" id="title">Bus</div>
 		<div class="null"></div>
 	</div>
 </template>
@@ -40,7 +40,7 @@
 			float: left;
 		}
 	}
-	
+
 	.back {
 		width: 20%;
 		height: 3rem;
@@ -78,7 +78,7 @@
 		left: 35%;
 		top: 0;
 		width: 25px;
-		height: 25px;	
+		height: 25px;
 	}
 	.today,.selected-day{
 		color: #fff;

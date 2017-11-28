@@ -19,8 +19,7 @@
 			}
 		},
 		created (){
-			console.log(this.showLoading)
-			// this.show = this.showLoading;
+			this.show = this.showLoading;
 		},
 		components: { Shade }
 	}

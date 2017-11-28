@@ -26,7 +26,8 @@ new Vue({
   router,
   store: new Vuex.Store({
     state:{
-        showback: false
+        showback: false,
+        msg: ''
     }
   }),
   template: '<App/>',

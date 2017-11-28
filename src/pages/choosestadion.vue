@@ -25,20 +25,22 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="div_btn">
 			<div class="find" @click="findschle">查&nbsp;&nbsp;&nbsp;询</div>
 		</div>
 		<!-- 日历 -->
 		<vue-event-calendar v-show="showCalendar" :events="demoEvents" @day-changed="handleDayChanged" @month-changed="handleMonthChanged"></vue-event-calendar>
+		<Tips :msg="msg" v-show="showTips"></Tips>
 		<!-- 遮罩层 -->
-		<Shade v-show="showCalendar" @ishide="ishide"></Shade>	
+		<Shade v-show="showCalendar" @ishide="ishide"></Shade>
 	</div>
 </template>
 
 
 <script>
 	import Shade from '../components/shade'
+    import Tips from '../components/tips'
 	let today = new Date();
 	export default {
 		name: 'choosestadion',
@@ -49,7 +51,9 @@
 					demoEvents: [],
 					week: '',
 					particular: '',
-					showCalendar: false
+					showCalendar: false,
+					msg: '',
+					showTips: false
 			    }
 		},
 		created (){
@@ -62,9 +66,7 @@
 			console.log((new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1))
 			this.particular = todayYear + '-' + todayMonth + '-' + todayDay;
 		},
-		components: {
-			Shade
-		},
+		components: {Shade,Tips},
 		methods: {
 			ishide (data){
 				this.showCalendar = data;
@@ -78,7 +80,7 @@
 			},
 			reachnameFun (){
 				if(this.departname != "请选择"){
-					this.$router.push('/chooseplace?reach=true' + "&departname=" + this.departname + "&departid=" + this.departid)	
+					this.$router.push('/chooseplace?reach=true' + "&departname=" + this.departname + "&departid=" + this.departid)
 				}else{
 					this.$router.push('/chooseplace?reach=true')
 				}
@@ -88,23 +90,33 @@
 		      this.showCalendar = !this.showCalendar;
 		    },
 		    handleMonthChanged (data) {
-		     
+
 		    },
 			findschle () {
+				if(this.reachname == '请选择'){
+					this.msg = '请选择出发城市';
+					this.showTips = true;
+					this.$store.state.msg = '请选择出发城市';
+					return
+				}
+				if(this.reachname == '请选择'){
+					this.msg = '请选择目的城市';
+					return
+				}
 				this.$router.push('/shiftlists'+ "?departname=" + this.departname + "&departid=" + this.departid + "&reachname=" + this.reachname + "&reachid=" + this.reachid + "&departdate=" + this.particular)
 			},
 			formatDate (data){
 				let curdate = data.date;
 				this.week = this.initweek(curdate);
-				curdate = curdate.split('/');	
+				curdate = curdate.split('/');
 				this.particular = curdate[0] + '-' + (+curdate[1] < 10 ? '0' + JSON.parse(curdate[1]) : curdate[1]) + '-' + (+curdate[2] < 10 ? '0' + JSON.parse(curdate[2]) : curdate[2]);
-				let month = +curdate[1] < 10 ? '0' + (+curdate[1]) + '月' : curdate[1] + '月';	
-				let day = +curdate[2] < 10 ? '0' + (+curdate[2]) + '日' : curdate[2] + '日';	
+				let month = +curdate[1] < 10 ? '0' + (+curdate[1]) + '月' : curdate[1] + '月';
+				let day = +curdate[2] < 10 ? '0' + (+curdate[2]) + '日' : curdate[2] + '日';
 				this.choosedate = month + day;
 			},
 			initweek (data){
 				data = data.split('/');
-				let sdate =new Date(data[0],parseInt(data[1]-1),data[2]);   
+				let sdate =new Date(data[0],parseInt(data[1]-1),data[2]);
 				let curday = sdate.getDay();
 				let weeks = ['周日','周一','周二','周三','周四','周五','周六'];
 				return weeks[curday]
@@ -190,7 +202,7 @@
 	    display: flex;
 	    margin-top: 1rem;
 	}
-	
+
 	.citySelect:after {
 	    content: ".";
 	    display: block;
@@ -222,7 +234,7 @@
 	#week {
 	    margin-right: 0.5rem;
 	    color: #1FCC9E;
-	}	
+	}
 	.dateWeek {
 	    float: right;
 	}

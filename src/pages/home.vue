@@ -2,21 +2,21 @@
   <div>
     <div class="home">
        <Tit></Tit>
-          <swiper :options="swiperOption" ref="mySwiper">
-             <!-- slides -->
-             <swiper-slide><img class="swiperimg" src="../assets/CgoB7Vlkh12ALAPqAAIfH3tWR8I326.png"></swiper-slide>
-             <!-- <swiper-slide><img class="swiperimg" src="../assets/lunbo.png"></swiper-slide> -->
-           <!--   <swiper-slide>I'm Slide 3</swiper-slide>
-             <swiper-slide>I'm Slide 4</swiper-slide>
-             <swiper-slide>I'm Slide 5</swiper-slide>
-             <swiper-slide>I'm Slide 6</swiper-slide>
-             <swiper-slide>I'm Slide 7</swiper-slide> -->
-             <!-- Optional controls -->
-             <div class="swiper-pagination"  slot="pagination"></div>
-             <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
-             <!-- <div class="swiper-button-next" slot="button-next"></div> -->
-             <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
-          </swiper>
+        <swiper :options="swiperOption" ref="mySwiper">
+           <!-- slides -->
+           <swiper-slide><img class="swiperimg" src="../assets/CgoB7Vlkh12ALAPqAAIfH3tWR8I326.png"></swiper-slide>
+           <!-- <swiper-slide><img class="swiperimg" src="../assets/lunbo.png"></swiper-slide> -->
+         <!--   <swiper-slide>I'm Slide 3</swiper-slide>
+           <swiper-slide>I'm Slide 4</swiper-slide>
+           <swiper-slide>I'm Slide 5</swiper-slide>
+           <swiper-slide>I'm Slide 6</swiper-slide>
+           <swiper-slide>I'm Slide 7</swiper-slide> -->
+           <!-- Optional controls -->
+           <div class="swiper-pagination"  slot="pagination"></div>
+           <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
+           <!-- <div class="swiper-button-next" slot="button-next"></div> -->
+           <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
+        </swiper>
        <Choosestadion :departname="departname" :departid="departid" :reachname="reachname" :reachid="reachid"></Choosestadion>
     </div>
   </div>
@@ -68,8 +68,7 @@
     },
     created () {
       this.$store.state.showback = false;
-      let _this = this;
-      _this.initstadion()
+      this.initstadion()
     },
     methods: {
       initstadion (){
