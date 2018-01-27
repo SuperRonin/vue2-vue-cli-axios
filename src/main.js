@@ -27,7 +27,8 @@ new Vue({
   store: new Vuex.Store({
     state:{
         showback: false,
-        msg: ''
+        msg: '',
+        showLoading: false
     }
   }),
   template: '<App/>',

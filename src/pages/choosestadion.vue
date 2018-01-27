@@ -31,7 +31,7 @@
 		</div>
 		<!-- 日历 -->
 		<vue-event-calendar v-show="showCalendar" :events="demoEvents" @day-changed="handleDayChanged" @month-changed="handleMonthChanged"></vue-event-calendar>
-		<Tips :msg="msg" v-show="showTips"></Tips>
+		<Tips  v-show="showTips"></Tips>
 		<!-- 遮罩层 -->
 		<Shade v-show="showCalendar" @ishide="ishide"></Shade>
 	</div>
@@ -52,7 +52,6 @@
 					week: '',
 					particular: '',
 					showCalendar: false,
-					msg: '',
 					showTips: false
 			    }
 		},
@@ -93,14 +92,14 @@
 
 		    },
 			findschle () {
-				if(this.reachname == '请选择'){
-					this.msg = '请选择出发城市';
+				if(this.departname == '请选择'){
 					this.showTips = true;
 					this.$store.state.msg = '请选择出发城市';
 					return
 				}
 				if(this.reachname == '请选择'){
-					this.msg = '请选择目的城市';
+					this.showTips = true;
+					this.$store.state.msg = '请选择目的城市';
 					return
 				}
 				this.$router.push('/shiftlists'+ "?departname=" + this.departname + "&departid=" + this.departid + "&reachname=" + this.reachname + "&reachid=" + this.reachid + "&departdate=" + this.particular)

@@ -67,7 +67,6 @@
 			// console.log(changedate.innerHTML + '==========')
 		},
 		created () {
-			window._this = this;
 			this.$store.state.showback = true
 			this.query = this.$route.query; //地址栏参数
 			this.departdate= this.query.departdate;
@@ -76,56 +75,58 @@
 		components: { Tit,Beforeorafterday,Nodata,Loading },
 		methods: {
 			shiftlistsAjax: function(){
-				this.showLoading = true;
+				const that = this;
+				that.showLoading = true;
 				$http.get('/schedulesearch0',{
 					params: {
-						departid: this.query.departid,
-						departname: this.query.departname,
-						departtype: '2',
-						destination: this.query.reachname,
+						departid: that.query.departid,
+						departname: that.query.departname,
+						departtype: '1',
+						destination: that.query.reachname,
 						destinationtype: '2',
-						departdate: this.departdate,
+						netname: 'nmd.bus365.cn',
+						departdate: that.departdate,
 						showType: '2'
 					}
 				})
 				.then(function (response) {
 				    if(response && response.data.schedules.length !== 0){
-				    	_this.showNodata = false;
+				    	that.showNodata = false;
 				    	// 班次列表和当前日期下所有班次的departid
-				    	_this.shiftlists = response.data.schedules;
-				    	_this.departid = response.data.departid;
+				    	that.shiftlists = response.data.schedules;
+				    	that.departid = response.data.departid;
 				    	// 存储所有班次的schedulecode
-				    	for(let i = 0;i<_this.shiftlists.length;i++){
-				    		_this.schedulecodes.push(_this.shiftlists[i]['schedulecode'])
+				    	for(let i = 0;i<that.shiftlists.length;i++){
+				    		that.schedulecodes.push(that.shiftlists[i]['schedulecode'])
 				    	}
-				    	_this.showLoading = false;
+				    	that.showLoading = false;
 				    }else{
-				    	_this.showNodata = true;
-				    	_this.showLoading = false;
+				    	that.showNodata = true;
+				    	that.showLoading = false;
 				    }
 				  })
 				.catch(function (error) {
-				    _this.showNodata = true;
-				    _this.showLoading = false;
+				    that.showNodata = true;
+				    that.showLoading = false;
 				})
 			},
 			showWaystadionFun: function(index){
 				this.showWaystadion = !this.showWaystadion;
 				this.showWaystadionIndex = index;
-				this.WaystadionAjax(_this.schedulecodes[index])
+				this.WaystadionAjax(that.schedulecodes[index])
 			},
 			WaystadionAjax: function(schedulecode){
 				$http.get('/schedule/routestations',{
 					params: {
-						stationorgid: _this.departid,
+						stationorgid: that.departid,
 						schedulecode: schedulecode,
-						departdate: _this.query.departdate,
+						departdate: that.query.departdate,
 						netname: 'cra.bus365.cn',
 					}
 				})
 				.then(function (response) {
 				    if(response && response.data.length !== 0){
-				    	_this.waystadionlist = response.data;
+				    	that.waystadionlist = response.data;
 				    }
 				  })
 				.catch(function (error) {
